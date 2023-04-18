@@ -5,7 +5,7 @@ using UnityEngine;
 public class ButtonObject : MonoBehaviour
 {
     [SerializeField] private string color;
-    [SerializeField] private Animator anim;
+    private Animator anim;
 
     private GameManager gameManager;
     private List<Transform> currentInMe = new();
@@ -14,6 +14,7 @@ public class ButtonObject : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         gameManager = FindObjectOfType<GameManager>();
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -23,6 +24,8 @@ public class ButtonObject : MonoBehaviour
             currentInMe.Add(collision.transform);
         }
         gameManager.SetData(color, currentInMe.Count > 0);
+
+        anim.SetBool("Active", currentInMe.Count > 0);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -31,5 +34,7 @@ public class ButtonObject : MonoBehaviour
             currentInMe.Remove(collision.transform);
         }
         gameManager.SetData(color, currentInMe.Count > 0);
+
+        anim.SetBool("Active", currentInMe.Count > 0);
     }
 }

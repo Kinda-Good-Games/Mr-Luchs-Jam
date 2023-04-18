@@ -13,6 +13,7 @@ public class RobotManager : MonoBehaviour
     private Animator crosshair_animator;
     private InputMaster controls;
     [SerializeField] private float lerpTime;
+    private bool isLerping = false;
     private void Start()
     {
         controls = FindObjectOfType<Player>().controls;
@@ -82,7 +83,7 @@ public class RobotManager : MonoBehaviour
     private IEnumerator LerpToRobot(Transform tr, float timeToLerp)
     {
         float elapsed = 0;
-
+        isLerping = true;
         while (elapsed < timeToLerp)
         {
             float progress = elapsed / timeToLerp;
@@ -93,12 +94,13 @@ public class RobotManager : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
+        isLerping = false;
     }
     private void Update()
     {
-        if (!isActive)
+        if (!isActive && !isLerping)
         {
-           // crosshair.position = robots[current].transform.position;
+            crosshair.position = robots[current].transform.position;
         }
         if (robots.Count == 0)
         {

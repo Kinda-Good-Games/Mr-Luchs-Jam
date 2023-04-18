@@ -105,6 +105,7 @@ public class Player : MonoBehaviour
         hasReleasedJump = false;
         jumped = false;
     }
+
     private void OnEnable()
     {
         controls.Enable();
@@ -132,7 +133,7 @@ public class Player : MonoBehaviour
         //animator_general.SetTrigger("Stretch");
         // AudioManager.instance.Play("Jump");
 
-        rb.AddForce(new Vector2(rb.velocity.x, jumpHeight), ForceMode2D.Impulse);
+        rb.velocity = (new Vector2(rb.velocity.x, jumpHeight));
         jumped = true;
     }
     private void ResetJumpBuffer() => currentJumpBufferTime = jumpBufferTime;

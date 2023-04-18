@@ -7,7 +7,6 @@ public class MovingRobot : Robot
 {
     private Animator anim;
     private Rigidbody2D rb;
-    private InputMaster controls;
 
     [SerializeField] private float speed;
     [Header("Advanced")]
@@ -20,11 +19,6 @@ public class MovingRobot : Robot
     {
         anim = transform.GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
-    }
-
-    private void Start()
-    {
-        controls = FindObjectOfType<Player>().controls;
     }
     public override void Activate()
     {

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MovingBlock : MonoBehaviour
 {
+    private Animator anim;
+
     [SerializeField] private string color;
     [SerializeField] private float speed;
     [SerializeField] private float checkDistance;
@@ -25,6 +27,7 @@ public class MovingBlock : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         gm = FindObjectOfType<GameManager>();
+        anim = GetComponent<Animator>();
 
         originalPosition = transform.position;
         blockPosition= transform.position;
@@ -48,6 +51,7 @@ public class MovingBlock : MonoBehaviour
             lerpCounter = 0;
         }
         isActive = value;
+        anim.SetBool("Active", value);
     }
     public void Update()
     {
@@ -73,12 +77,16 @@ public class MovingBlock : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.GetComponent<Robot>() != null)
-        collision.transform.SetParent(transform);
+        {
+            collision.transform.SetParent(transform);
+        }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
 
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.GetComponent<Robot>() != null)
+        {
             collision.transform.SetParent(null);
+        }
     }
 }

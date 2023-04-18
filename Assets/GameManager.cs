@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,19 @@ public class GameManager : MonoBehaviour
     public OnColorChanged onColorChanged;
 
     public List<ColorData> datas;
+    private InputMaster controls;
+    private Crossfade crossfade;
+    private void Start()
+    {
+        crossfade = FindObjectOfType<Crossfade>();
+        controls = FindObjectOfType<Player>().controls;
+
+        controls.General.Reload.performed += _ => Reload();
+    }
+    private void Reload()
+    {
+        crossfade.LoadWrapper(SceneManager.GetActiveScene().buildIndex);
+    }
 
     public void SetData(string key, bool value)
     {
