@@ -24,8 +24,8 @@ public class Enemy : MonoBehaviour
     {
         rb.velocity = new Vector2(speed, rb.velocity.y) * transform.right;
 
-        var hits = Physics2D.RaycastAll(transform.position, raycastDir * transform.right, checkDistance, occupationLayer);
-        Debug.DrawLine(rb.position, rb.position + (raycastDir * transform.right * checkDistance + offset), Color.red);
+        var hits = Physics2D.RaycastAll((Vector2)transform.position + offset, raycastDir * transform.right, checkDistance, occupationLayer);
+        Debug.DrawLine(rb.position + offset, rb.position + offset + (raycastDir * transform.right * checkDistance), Color.red);
         List<RaycastHit2D> trueHits = hits.ToList().FindAll(x => x.transform != transform);
         if (trueHits.Count > 0)
         {

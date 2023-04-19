@@ -48,7 +48,7 @@ public class TopPipe : MonoBehaviour
         }
         else
         {
-            spawnCounter = spawnTime * 0.12f;
+            spawnCounter = spawnTime * 0.5f;
         }
 
         if (spawnCounter < 0)
