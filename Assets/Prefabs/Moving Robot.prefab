@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3674951768176666296}
   - component: {fileID: 3674951768176666299}
   - component: {fileID: 3674951768176666298}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Moving Robot
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 3674951769143486942}
   - component: {fileID: 3674951769143486936}
   - component: {fileID: 3674951769143486937}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Gfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}

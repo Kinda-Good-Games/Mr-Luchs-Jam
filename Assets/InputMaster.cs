@@ -202,7 +202,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""b0d03271-3cb2-42da-a978-b51696d4b08c"",
-                    ""path"": ""<Keyboard>/i"",
+                    ""path"": ""<Keyboard>/k"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -213,7 +213,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""positive"",
                     ""id"": ""d0bf94dc-a204-4adc-bcb9-1319ed236b4f"",
-                    ""path"": ""<Keyboard>/k"",
+                    ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

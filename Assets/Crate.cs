@@ -32,7 +32,7 @@ public class Crate : MonoBehaviour
     void Update()
     {
         col.isTrigger = isActive;
-        rb.gravityScale = isActive ? 0: 1;
+        //rb.gravityScale = isActive ? 0: 1;
     }
 
     private void HandleColorChange(string key, bool value)

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 489672510311690602}
   - component: {fileID: 489672510311690598}
   - component: {fileID: 489672510311690599}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crate_Red
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -139,14 +139,14 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 100
+  m_Mass: 4
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &489672510311690599
 Animator:

@@ -5,18 +5,25 @@ using UnityEngine;
 public class Robot : MonoBehaviour
 {
     public bool active = false;
+    private Vector2 originalPosition;
 
     protected InputMaster controls;
     protected virtual void Start()
     {
         controls = FindObjectOfType<Player>().controls;
+        originalPosition = transform.position;
     }
     public virtual void Activate()
     {
-        Debug.Log("Active!");
+        active = true;
     }
     public virtual void Deactivate()
     {
-        Debug.Log("Inactive!");
+        active = false;
+    }
+
+    public void ResetPosition()
+    {
+        transform.position = originalPosition;
     }
 }

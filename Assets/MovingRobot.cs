@@ -22,13 +22,13 @@ public class MovingRobot : Robot
     }
     public override void Activate()
     {
+        base.Activate();
         anim.SetBool("Active", true);
-        active = true;
     }
     public override void Deactivate()
     {
+        base.Deactivate();
         anim.SetBool("Active", false);
-        active = false;
     }
 
     private void Update()
