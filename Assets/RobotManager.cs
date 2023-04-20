@@ -98,6 +98,8 @@ public class RobotManager : MonoBehaviour
     }
     private void Update()
     {
+        if (robots.Count <= 1) return;    
+
         if (!isActive && !isLerping)
         {
             crosshair.position = robots[current].transform.position;

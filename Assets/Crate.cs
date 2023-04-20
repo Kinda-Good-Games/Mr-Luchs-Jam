@@ -32,7 +32,9 @@ public class Crate : MonoBehaviour
     void Update()
     {
         col.isTrigger = isActive;
-        //rb.gravityScale = isActive ? 0: 1;
+        rb.isKinematic = isActive;
+
+        if (rb.isKinematic) rb.velocity = Vector2.zero;
     }
 
     private void HandleColorChange(string key, bool value)

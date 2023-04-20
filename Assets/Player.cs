@@ -68,6 +68,7 @@ public class Player : MonoBehaviour
     public void Die()
     {
         PlayerPrefs.SetInt("Deaths", PlayerPrefs.GetInt("Deaths") + 1);
+        FindObjectOfType<Crossfade>().LoadWrapper(SceneManager.GetActiveScene().buildIndex);
         Destroy(gameObject);
     }
 

@@ -15,9 +15,11 @@ public class TopPipe : MonoBehaviour
     private float spawnCounter;
     [SerializeField] private Transform spawnpoint;
     [SerializeField] private GameObject spawnable;
+    private Animator anim;
     private void Awake()
     {
         gm = FindObjectOfType<GameManager>();
+        anim = GetComponent<Animator>();
     }
     private void OnEnable()
     {
@@ -34,12 +36,13 @@ public class TopPipe : MonoBehaviour
 
         isActive = value;
     }
-    private void OnDrawGizmos()
-    {
-    }
-
     private void Update()
     {
+        anim.SetBool("Active", !isActive);
+
+
+        if (!isActive) return;
+
         RaycastHit2D result;//
         if (!Physics2D.Raycast(spawnpoint.position, raycastDir, checkDistance, occupationLayer))
         {
