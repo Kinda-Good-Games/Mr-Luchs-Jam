@@ -11,6 +11,10 @@ public class Crossfade : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
+    public void AllowZoom()
+    {
+        FindObjectOfType<Cinemachine.CinemachineVirtualCamera>().GetComponent<Animator>().SetTrigger("Start");
+    }
     public void LoadWrapper(int index)
     {
         StartCoroutine(LoadScene(index));

@@ -16,7 +16,8 @@ public class SpikeyRobot : Robot
     private float lastHorizontalInput;
     private float currentAccelerationTime;
     private int lastDir;
-    private void Start()
+
+    protected override void Start()
     {
         base.Start();
     }

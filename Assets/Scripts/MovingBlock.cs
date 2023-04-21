@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MovingBlock : MonoBehaviour
@@ -17,6 +18,7 @@ public class MovingBlock : MonoBehaviour
 
     [SerializeField]private LayerMask groundLayer;
     [SerializeField]private Vector2 raycastDir;
+    [SerializeField]private Vector2 offset;
     private Vector2 blockPosition;
     private Vector2 originalPosition;
 
@@ -57,10 +59,12 @@ public class MovingBlock : MonoBehaviour
     {
         if (isActive)
         {
-            RaycastHit2D result;//
-            if (!Physics2D.Raycast(transform.position, raycastDir, checkDistance, groundLayer))
+            var hits = Physics2D.RaycastAll((Vector2)transform.position + offset, raycastDir, checkDistance, groundLayer);//
+
+            List<RaycastHit2D> trueHits = hits.ToList().FindAll(x => x.transform.gameObject!= gameObject);
+            if (trueHits.Count <= 0)
             {
-                rb.velocity = raycastDir * speed;
+                transform.Translate((raycastDir * speed * Time.deltaTime));
             }
             else
             {
@@ -78,7 +82,8 @@ public class MovingBlock : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.GetComponent<Robot>() != null)
         {
-            collision.transform.SetParent(transform);
+           // collision.transform.SetParent(transform);
+            collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -86,7 +91,8 @@ public class MovingBlock : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.GetComponent<Robot>() != null)
         {
-            collision.transform.SetParent(null);
+           // collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+           // collision.transform.SetParent(null);
         }
     }
 }

@@ -435,7 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366afd87ed2ba8345a99b419b6559465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneLoadingDelay: 2.2
+  sceneLoadingDelay: 2.3
 --- !u!95 &4329351587520656327
 Animator:
   serializedVersion: 5

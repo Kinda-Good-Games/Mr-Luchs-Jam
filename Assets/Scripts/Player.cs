@@ -127,6 +127,7 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * releaseFactor);
             hasReleasedJump = true;
+            Debug.Log("Jumped Released");
         }
     }
     private void Jump()
@@ -136,10 +137,16 @@ public class Player : MonoBehaviour
 
         rb.velocity = (new Vector2(rb.velocity.x, jumpHeight));
         jumped = true;
+
+        Debug.Log("Jumped");
     }
     private void ResetJumpBuffer() => currentJumpBufferTime = jumpBufferTime;
     void Update()
     {
+        if (transform.position.y  < -18)
+        {
+            Die();
+        }
         if (currentJumpBufferTime > 0 && currentCoyoteTime > 0)
         {
             Jump();
@@ -208,10 +215,8 @@ public class Player : MonoBehaviour
         //animator_alive.SetFloat("x Input", Mathf.Abs(horizontalInput));
         //animator_alive.SetBool("isGrounded", groundCheck.IsGrounded);
 
-        rb.velocity = new Vector2(speed * lastDir * (currentAccelerationTime / accelerationTime), rb.velocity.y);
+        rb.velocity = new Vector2(speed * lastDir * (currentAccelerationTime / accelerationTime), Math.Clamp(rb.velocity.y, -maxYVelocity, Mathf.Infinity));
 
-
-        rb.velocity = new Vector2(rb.velocity.x, Math.Clamp(rb.velocity.y, -maxYVelocity, Mathf.Infinity));
         lastHorizontalInput = horizontalInput;
 
 
