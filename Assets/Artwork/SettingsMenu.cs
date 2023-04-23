@@ -32,7 +32,7 @@ public class SettingsMenu : MonoBehaviour
     public void SetMenu(bool active)
     {
         //if (active) AudioManager.instance.Play("Button Click");
-
+        Debug.Log("agf");
         if (active)
         {
             animator.SetTrigger("Open");
@@ -106,7 +106,7 @@ public class SettingsMenu : MonoBehaviour
 
         ReadSettingsFile();
 
-        SetMenu(false);
+       // SetMenu(false);
         musicSlider.value = settings.musicVolume;
         soundeffectSlider.value = settings.sfxVolume;
 
