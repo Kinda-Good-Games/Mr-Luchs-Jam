@@ -38,10 +38,10 @@ public class TopPipe : MonoBehaviour
     }
     private void Update()
     {
-        anim.SetBool("Active", !isActive);
+        anim.SetBool("Active", isActive);
 
 
-        if (!isActive) return;
+        if (isActive) return;
 
         RaycastHit2D result;//
         if (!Physics2D.Raycast(spawnpoint.position, raycastDir, checkDistance, occupationLayer))

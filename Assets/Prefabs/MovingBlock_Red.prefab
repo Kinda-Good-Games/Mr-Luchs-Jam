@@ -121,7 +121,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -148,9 +148,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: red
-  speed: 5
+  speed: 3
   checkDistance: 0.51
-  lerpTime: 5.75
+  lerpTime: 3.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 64

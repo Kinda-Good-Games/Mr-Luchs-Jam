@@ -48,4 +48,28 @@ MonoBehaviour:
   MusicMixer: {fileID: 0}
   SoundeffectMixer: {fileID: 0}
   VoiceLineMixer: {fileID: 0}
-  sounds: []
+  sounds:
+  - name: Soundtrack
+    output: 0
+    Clip: {fileID: 8300000, guid: 43095ffdce4220a4c88b7e904c408d84, type: 3}
+    Volume: 0.6
+    Pitch: 1
+    source: {fileID: 0}
+    PlayOnAwake: 1
+    Loop: 1
+  - name: Jump
+    output: 0
+    Clip: {fileID: 8300000, guid: 0e015f7b32f0f7049913eee1184f18ca, type: 3}
+    Volume: 1
+    Pitch: 1
+    source: {fileID: 0}
+    PlayOnAwake: 0
+    Loop: 0
+  - name: Landing
+    output: 0
+    Clip: {fileID: 8300000, guid: 3444564185e4dbf4bbb60720d9ea184e, type: 3}
+    Volume: 1
+    Pitch: 1
+    source: {fileID: 0}
+    PlayOnAwake: 0
+    Loop: 0

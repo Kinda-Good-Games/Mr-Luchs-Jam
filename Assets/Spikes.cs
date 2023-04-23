@@ -11,7 +11,7 @@ public class Spikes : MonoBehaviour
 
         if (enemy != null)
         {
-            Destroy(enemy.gameObject);
+            enemy.Die(); 
         }
 
         if (player != null)

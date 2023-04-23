@@ -45,7 +45,7 @@ public class SpikeyRobot : Robot
 
         if (enemy != null)
         {
-            Destroy(enemy.gameObject);
+            enemy.Die();
         }
 
         if (player != null)

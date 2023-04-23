@@ -21,6 +21,10 @@ public class ConveyorBelt : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.GetComponent<Robot>() != null)
         {
+            var limitable = collision.gameObject.GetComponent(typeof(ILimitableAccleration)) as ILimitableAccleration;
+            if (limitable != null && limitable.hasAcceleration) return;
+
+            limitable.hasAcceleration = true;
             currentInMe.Add(collision.gameObject);
         }
     }
@@ -36,6 +40,9 @@ public class ConveyorBelt : MonoBehaviour
     {
         yield return new WaitForSeconds(extraSpeedTime);
         currentInMe.Remove(gameObject);
+
+        var limitable = gameObject.GetComponent(typeof(ILimitableAccleration)) as ILimitableAccleration;
+        limitable.hasAcceleration = false;
 
     }
 
@@ -69,4 +76,8 @@ public class ConveyorBelt : MonoBehaviour
             rb.velocity += extraVelocity;
         }
     }
+}
+public interface ILimitableAccleration
+{
+    public bool hasAcceleration { get; set; } 
 }

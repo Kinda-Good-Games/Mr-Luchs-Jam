@@ -59,7 +59,8 @@ public class MovingBlock : MonoBehaviour
     {
         if (isActive)
         {
-            var hits = Physics2D.RaycastAll((Vector2)transform.position + offset, raycastDir, checkDistance, groundLayer);//
+            var hits = Physics2D.RaycastAll((Vector2)transform.position + offset, raycastDir * transform.up, checkDistance, groundLayer);//
+            Debug.DrawLine((Vector2)transform.position + offset, (Vector2)transform.position + offset + (raycastDir * transform.up), Color.green);
 
             List<RaycastHit2D> trueHits = hits.ToList().FindAll(x => x.transform.gameObject!= gameObject);
             if (trueHits.Count <= 0)

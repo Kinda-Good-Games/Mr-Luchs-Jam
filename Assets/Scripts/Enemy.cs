@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem deathParticles;
     [SerializeField] private float speed;
     [SerializeField] private LayerMask occupationLayer;
     [SerializeField] private Vector2 raycastDir;
@@ -26,7 +27,7 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
-        rb.velocity = new Vector2(speed, rb.velocity.y) * transform.right;
+        rb.velocity = new Vector2(speed, 0) * transform.right + new Vector2(0, rb.velocity.y);
         checkCooldownTimer -= Time.deltaTime;
         canCheck = checkCooldownTimer < 0;
 
@@ -34,7 +35,7 @@ public class Enemy : MonoBehaviour
 
         var hits = Physics2D.RaycastAll((Vector2)transform.position + offset, raycastDir * transform.right, checkDistance, occupationLayer);
         Debug.DrawLine(rb.position + offset, rb.position + offset + (raycastDir * transform.right * checkDistance), Color.red);
-        List<RaycastHit2D> trueHits = hits.ToList().FindAll(x => x.transform != transform);
+        List<RaycastHit2D> trueHits = hits.ToList().FindAll(x => x.transform != transform && !x.collider.isTrigger);
         if (trueHits.Count > 0)
         {
             canCheck = false;
@@ -44,6 +45,12 @@ public class Enemy : MonoBehaviour
             dir = dir == 0 ? -1 : 0;
             transform.rotation = Quaternion.Euler(0, 180 * dir, 0);
         }
+    }
+    public void Die()
+    {
+        Destroy(gameObject);
+        var obj= Instantiate(deathParticles, transform.position, Quaternion.identity);
+        Destroy(obj, obj.main.duration + 0.1f);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

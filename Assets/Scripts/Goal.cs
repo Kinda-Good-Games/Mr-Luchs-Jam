@@ -18,6 +18,7 @@ public class Goal : MonoBehaviour
 
     private IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
+        if (!collision.CompareTag("Player")) yield break;
         crossfade.LoadWrapper(sceneIndex);
 
         yield return new WaitForSeconds(loadDelay);

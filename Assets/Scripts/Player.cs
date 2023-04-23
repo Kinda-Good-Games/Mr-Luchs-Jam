@@ -8,10 +8,11 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using System.Linq;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, ILimitableAccleration
 {
     [Header("References")]
 
+    [SerializeField] private Animator animator_general;
     [SerializeField] private Animator[] animators;
 
     private CinemachineVirtualCamera cam;
@@ -56,6 +57,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpBufferTime = .05f;
     private float currentJumpBufferTime;
 
+    public bool hasAcceleration { get; set; }
+
     public void ChangeCharacterState(bool idle)
     {
         foreach (var item in animators)
@@ -74,7 +77,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        //animator_alive = GetComponent<Animator>();
+        animator_general = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         cam = FindAnyObjectByType<CinemachineVirtualCamera>();
         groundCheck = transform.GetComponentInChildren<GroundCheck>();
@@ -95,8 +98,8 @@ public class Player : MonoBehaviour
     {
         if (jumped)
         {
-            //animator_general.SetTrigger("Squash");
-            //AudioManager.instance.Play("Landing");
+            animator_general.SetTrigger("Squash");
+            AudioManager.instance.Play("Landing");
 
             footdust_landing.gameObject.SetActive(true);
             footdust_landing.Stop();
@@ -132,12 +135,12 @@ public class Player : MonoBehaviour
     }
     private void Jump()
     {
-        //animator_general.SetTrigger("Stretch");
+        animator_general.SetTrigger("Squish");
         // AudioManager.instance.Play("Jump");
 
         rb.velocity = (new Vector2(rb.velocity.x, jumpHeight));
         jumped = true;
-
+        AudioManager.instance.Play("Jump");
         Debug.Log("Jumped");
     }
     private void ResetJumpBuffer() => currentJumpBufferTime = jumpBufferTime;

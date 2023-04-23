@@ -27,10 +27,8 @@ public class Springbot : Robot
     }
     private void ReleaseJump()
     {
-        Debug.Log("uwu");
         if (!hasReleasedJump && rb.velocity.y > 0 && jumped)
         {
-            Debug.Log("asdg");
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * releaseFactor);
             hasReleasedJump = true;
         }
@@ -75,7 +73,7 @@ public class Springbot : Robot
         if (!active) return;
 
         anim.SetTrigger("Jump");
-        rb.AddForce(new(0, jumpHeight), ForceMode2D.Impulse);
+        rb.velocity = new(rb.velocity.x, jumpHeight);
         jumped = true;
     }
 }

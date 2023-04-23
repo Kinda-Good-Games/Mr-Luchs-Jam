@@ -9,6 +9,8 @@ public class ButtonObject : MonoBehaviour
 
     private GameManager gameManager;
     private List<Transform> currentInMe = new();
+    private bool isActive;
+    private bool hasSetFalse;
 
     private void Start()
     {
@@ -16,24 +18,37 @@ public class ButtonObject : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
 
     }
+    private void Update()
+    {
+        if (!isActive)
+        {
+            if (hasSetFalse) return;
 
+            hasSetFalse = true;
+        }
+        gameManager.SetData(color, isActive);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") || collision.GetComponent<Robot>() != null)
+        if (collision.CompareTag("Player") || collision.GetComponent<Robot>() != null || collision.GetComponent<Crate>() != null)
         {
             currentInMe.Add(collision.transform);
         }
-        gameManager.SetData(color, currentInMe.Count > 0);
+
+        isActive = currentInMe.Count > 0;
+        hasSetFalse = false;
 
         anim.SetBool("Active", currentInMe.Count > 0);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") || collision.GetComponent<Robot>() != null)
+        if (collision.CompareTag("Player") || collision.GetComponent<Robot>() != null || collision.GetComponent<Crate>() != null)
         {
             currentInMe.Remove(collision.transform);
         }
-        gameManager.SetData(color, currentInMe.Count > 0);
+        isActive = currentInMe.Count > 0;
+        hasSetFalse = false;
+
 
         anim.SetBool("Active", currentInMe.Count > 0);
     }
