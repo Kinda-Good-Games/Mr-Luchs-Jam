@@ -7,5 +7,9 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Blue Lever
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Controller: {fileID: 9100000, guid: 78b6468528533a743b4bd5782e7bc773, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: ff4c7abaaaa038e46ae03ba19a271f90, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c86e42bed723bf243ba287af597f4db0, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: dc2aa1764eb082149818eb669777986c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 257068999cf66974cb66ac78d4639ed4, type: 2}
