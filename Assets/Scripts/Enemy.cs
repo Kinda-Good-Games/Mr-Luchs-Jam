@@ -7,6 +7,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Camera Shake")]
+    [SerializeField] private float magnitude;
+    [SerializeField] private float duration;
+
+
+    [Space]
     [SerializeField] private ParticleSystem deathParticles;
     [SerializeField] private float speed;
     [SerializeField] private LayerMask occupationLayer;
@@ -35,7 +41,7 @@ public class Enemy : MonoBehaviour
 
         var hits = Physics2D.RaycastAll((Vector2)transform.position + offset, raycastDir * transform.right, checkDistance, occupationLayer);
         Debug.DrawLine(rb.position + offset, rb.position + offset + (raycastDir * transform.right * checkDistance), Color.red);
-        List<RaycastHit2D> trueHits = hits.ToList().FindAll(x => x.transform != transform && !x.collider.isTrigger);
+        List<RaycastHit2D> trueHits = hits.ToList().FindAll(x => x.transform != transform && !x.collider.isTrigger && x.collider.gameObject.GetComponent<PlatformEffector2D>() == null);
         if (trueHits.Count > 0)
         {
             canCheck = false;
@@ -48,6 +54,7 @@ public class Enemy : MonoBehaviour
     }
     public void Die()
     {
+        CameraShake.instance.ShakeCamera(magnitude, duration, smoothTransition:true);
         Destroy(gameObject);
         var obj= Instantiate(deathParticles, transform.position, Quaternion.identity);
         Destroy(obj, obj.main.duration + 0.1f);
@@ -62,6 +69,7 @@ public class Enemy : MonoBehaviour
         }
         if (robot)
         {
+            if (robot.GetType() == typeof(SpikeyRobot)) return;
             robot.ResetPosition();
             robot.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }

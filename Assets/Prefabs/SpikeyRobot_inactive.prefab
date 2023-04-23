@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 1459690607620714972}
   - component: {fileID: 1459690607620714973}
   - component: {fileID: 1459690607620714974}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SpikeyRobot_inactive
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,3 +184,4 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

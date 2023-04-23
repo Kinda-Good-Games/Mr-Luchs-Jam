@@ -25,11 +25,6 @@ public class GameManager : MonoBehaviour
         Debug.Log(controls == null);
         crossfade.LoadWrapper(SceneManager.GetActiveScene().buildIndex);
     }
-    private void Update()
-    {
-
-        Debug.Log(controls == null);
-    }
     public void SetData(string key, bool value)
     {
         var element = datas.Find(x => x.color == key);

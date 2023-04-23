@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class SpikeyRobot : Robot
 {
     private Animator anim;
     private Rigidbody2D rb;
 
+    private List<Enemy> enemies = new();
     [SerializeField] private float speed;
     [Header("Advanced")]
     [SerializeField] private float accelerationTime = .01f;
@@ -39,9 +41,23 @@ public class SpikeyRobot : Robot
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!active) return;
-        Player player = collision.gameObject.GetComponent<Player>();
+        if (collision.gameObject.GetComponent<Crate>() != null)
+        {
+            collision.transform.SetParent(transform);
+            collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
+
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+
+        if (!active)
+        {
+            if (enemy != null)
+            {
+                enemies.Add(enemy);
+            }
+            return;
+        }
+        Player player = collision.gameObject.GetComponent<Player>();
 
         if (enemy != null)
         {
@@ -53,7 +69,15 @@ public class SpikeyRobot : Robot
             player.Die();
         }
     }
-
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        if (enemy != null) enemies.Remove(enemy);
+        if (collision.gameObject.GetComponent<Crate>() != null)
+        {
+            collision.transform.SetParent(null);
+        }
+    }
 
     private void Update()
     {

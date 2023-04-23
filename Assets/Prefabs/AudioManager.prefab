@@ -44,14 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 713edff032e42c84ab7aa2782828d663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 0}
-  MusicMixer: {fileID: 0}
-  SoundeffectMixer: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: 4c9dc441096e31c419000a0e6b139fc6, type: 2}
+  MusicMixer: {fileID: 6439701879256750349, guid: 4c9dc441096e31c419000a0e6b139fc6, type: 2}
+  SoundeffectMixer: {fileID: -3724897846630732378, guid: 4c9dc441096e31c419000a0e6b139fc6, type: 2}
   VoiceLineMixer: {fileID: 0}
   sounds:
   - name: Soundtrack
     output: 0
-    Clip: {fileID: 8300000, guid: 43095ffdce4220a4c88b7e904c408d84, type: 3}
+    Clip: {fileID: 8300000, guid: f5b94f8ef8cb9c24cad58ba11241323b, type: 3}
     Volume: 0.6
     Pitch: 1
     source: {fileID: 0}

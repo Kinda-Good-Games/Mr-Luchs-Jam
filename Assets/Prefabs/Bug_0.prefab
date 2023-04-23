@@ -108,6 +108,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2459614341997434189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e863a2feffdfc7347aa609743e564762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  magnitude: 8.5
+  duration: 0.05
   deathParticles: {fileID: 6790308356962280722, guid: 7a64ef7984e78d544a108b46692f3ca1, type: 3}
   speed: 5
   occupationLayer:
